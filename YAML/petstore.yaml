@@ -13,5 +13,5 @@ spec:
       routeAction:
         single:
           upstream:
-            name: default-petstore-8080
+            name: petstore-upstream
             namespace: gloo-system
