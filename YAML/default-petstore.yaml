@@ -1,0 +1,35 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: default-petstore
++  namespace: default
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: default-petstore
++  template:
++    metadata:
++      labels:
++        app: default-petstore
++    spec:
++      containers:
++      - name: petstore
++        image: gcr.io/solo-public/petstore:latest
++        imagePullPolicy: IfNotPresent
++        ports:
++        - containerPort: 8080
+---
++apiVersion: v1
++kind: Service
++metadata:
++  name: default-petstore
++  namespace: default
++spec:
++  selector:
++    app: default-petstore
++  ports:
++  - name: http
++    port: 8080
++    targetPort: 8080
++  type: ClusterIP
