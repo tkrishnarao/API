@@ -1,2 +1,20 @@
 # API
-This is my attempt at making a personal APi using the open-source version of Gloo Gateway and connecting it to a personal database.
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: petstore
+  namespace: gloo-system
+spec:
+  virtualHost:
+    domains:
+      - '*'
+    routes:
+      - matchers:
+          - prefix: /
+        routeAction:
+          single:
+            upstream:
+              name: petstore-upstream
+              namespace: gloo-system
+        options:
+          prefixRewrite: /api/pets
