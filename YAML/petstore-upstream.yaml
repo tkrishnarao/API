@@ -1,7 +1,7 @@
 apiVersion: gloo.solo.io/v1
 kind: Upstream
 metadata:
-  name: default-petstore-8080
+  name: petstore-upstream
   namespace: gloo-system
 spec:
   kube:
